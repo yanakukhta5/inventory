@@ -8,6 +8,9 @@ define: {
       base: "red"
     }
 },
+chokidarWatchOptions: {
+  usePolling: true
+},
 plugins: [vue()],
 resolve: {
     alias: {
@@ -17,7 +20,10 @@ resolve: {
   css: {
     preprocessorOptions: {
       scss: { 
-         additionalData: '@import "@/styles/variables.scss";'
+         additionalData: `
+          @import "@/styles/fonts.scss";
+          @import "@/styles/variables.scss";
+         `
      },
     },
   },
