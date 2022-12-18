@@ -1,0 +1,25 @@
+body {
+  min-width: 100vw;
+  min-height: 100vh;
+  background-color: $background;
+  color: $fontColor;
+  font-family: $fontFamily;
+}
+
+input {
+  background-color: $formBackgroud;
+  color: $fontColor;
+}
+
+input::placeholder {
+  font-family: $fontFamily
+
+}
+
+input[type="submit"]{
+  cursor: pointer;
+}
+
+input:focus-visible{
+  outline: none;
+}
