@@ -62,15 +62,14 @@ export default {
 
 <style lang="scss" scoped>
 .grid-wrapper {
-  width: max(67%, 525px);
-  height: 525px;
   border-radius: $borderRadius;
   border: 1px solid $borderColor;
   overflow: auto;
 }
 .grid {
   display: grid;
-  width: 100%;
+  width: 525px;
+  height: 525px;
   min-height: 100%;
   background-color: $cardBackgroud;
   grid-template-columns: repeat(5, 1fr);
