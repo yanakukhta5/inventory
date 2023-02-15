@@ -1,6 +1,6 @@
 <script>
 import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
-import Description from "../Description.vue";
+import Description from "../Description/index.vue";
 
 export default {
   props: {
@@ -46,7 +46,6 @@ export default {
     changeItem() {
       if(this.inventoryItem.color){
         this.changeActiveItem(this.inventoryItem)
-        this.createModeChange();
       } 
     },
     createModeSwitch(){
