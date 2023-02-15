@@ -1,9 +1,15 @@
 <script>
+import { mapActions, mapGetters, mapMutations, mapState } from "vuex";
+import Description from "../Description.vue";
+
 export default {
   props: {
     inventoryItem: Object,
   },
+  components: { Description },
   computed: {
+    ...mapState("create", ["isCreating"]),
+    ...mapGetters("activeItem", ["isActiveItem"]),
     color() {
       return {
         "background-color": this.inventoryItem.color,
@@ -16,6 +22,8 @@ export default {
     },
   },
   methods: {
+    ...mapActions("activeItem", ["changeActiveItem"]),
+    ...mapMutations("create", ["createModeChange"]),
     handlerShow() {
       if (this.$refs.tooltip) this.$refs.tooltip.style.display = "block";
       else this.$refs.button.style.display = "block";
@@ -35,6 +43,16 @@ export default {
         }
       });
     },
+    changeItem() {
+      if(this.inventoryItem.color){
+        this.changeActiveItem(this.inventoryItem)
+        this.createModeChange();
+      } 
+    },
+    createModeSwitch(){
+      this.createModeChange();
+      this.changeActiveItem(null)
+    }
   },
 };
 </script>
@@ -97,6 +115,7 @@ export default {
   background-color: transparent;
   border-radius: $smallBorderRadius;
   z-index: 2;
+  user-select: none;
   cursor: pointer;
   &:hover {
     color: $lightest;
@@ -104,15 +123,19 @@ export default {
   &:focus {
     border: 1px solid $lightest;
   }
+  &__disabled {
+    display: none !important;
+  }
 }
 </style>
 
 <template>
   <div
     class="inventory-item"
-    v-on:mouseover="handlerShow"
-    v-on:mouseleave="handlerHide"
-    v-on:mousemove="handlerMove"
+    @:mouseover="handlerShow"
+    @:mouseleave="handlerHide"
+    @:mousemove="handlerMove"
+    @click="changeItem"
     ref="square"
   >
     <div
@@ -121,9 +144,15 @@ export default {
       class="tooltip"
       ref="tooltip"
     >
-      {{ inventoryItem.tooltip }}
+      {{ inventoryItem.name }}
     </div>
-    <button v-else class="button" v-on:click="teleportCreateOpen" ref="button">
+    <button
+      v-else
+      :class="[{ button__disabled: isCreating }, 'button']"
+      v-on:click="createModeSwitch"
+      :disabled="isCreating"
+      ref="button"
+    >
       Добавить цвет
     </button>
     <div class="item">

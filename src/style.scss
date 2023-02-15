@@ -1,9 +1,25 @@
 body {
-  min-width: 100vw;
   min-height: 100vh;
+  display: flex;
   background-color: $background;
   color: $fontColor;
   font-family: $fontFamily;
+  position: relative;
+  z-index: 1;
+}
+
+#app {
+  width: 100%;
+}
+
+#drawer {
+  position: absolute;
+  z-index: 998;
+  right: 0;
+  top: 0;
+  width: fit-content;
+  height: 100%;
+  border-left: 1px solid $borderColor;
 }
 
 input {
@@ -12,14 +28,13 @@ input {
 }
 
 input::placeholder {
-  font-family: $fontFamily
-
+  font-family: $fontFamily;
 }
 
-input[type="submit"]{
+input[type="submit"] {
   cursor: pointer;
 }
 
-input:focus-visible{
+input:focus-visible {
   outline: none;
 }

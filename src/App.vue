@@ -2,26 +2,29 @@
 import Aside from "@/components/Aside.vue";
 import Grid from "@/components/Grid/Grid.vue";
 import Search from "@/components/Search.vue";
+import Description from "./components/Description.vue";
+
 export default {
   components: {
     Aside,
     Grid,
+    Description,
     Search,
-  },
-}
+  }
+};
 </script>
 
 <template>
   <div class="app">
     <div class="_container">
-      <div class="app-top">
+      <Search></Search>
+      <div class="content">
         <Aside></Aside>
         <Grid></Grid>
       </div>
-      <Search></Search>
     </div>
   </div>
-  <div id="drawer" class="drawer"></div>
+  <Description />
 </template>
 
 <style lang="scss" scoped>
@@ -32,7 +35,7 @@ export default {
   min-width: 100vh;
   min-height: 100vh;
 }
-.app-top {
+.content {
   display: flex;
   justify-content: space-between;
 }
