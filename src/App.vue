@@ -1,10 +1,23 @@
 <script>
+import { mapGetters, mapState } from "vuex";
+
+// TODO:
+// delete index
+// in griditem edit objects 
+
 import User from "@/components/User.vue";
-import Grid from "@/components/Grid/Grid.vue";
+import Grid from "@/components/Grid/index.vue";
 import Search from "@/components/Search.vue";
-import Description from "./components/Description.vue";
+import Description from "@/components/Description/index.vue";
 
 export default {
+  computed: {
+    ...mapGetters("activeItem", ["isActiveItem"]),
+    ...mapState({
+      isCreating: (state) => state.creaate.isCreating,
+      active: (state) => state.activeItem.active,
+    }),
+  },
   components: {
     User,
     Grid,
