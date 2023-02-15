@@ -1,5 +1,5 @@
 <template>
-  <aside class="aside">
+  <section class="user">
     <div class="avatar__wrapper">
       <img
         alt="Фото Вашего профиля"
@@ -14,11 +14,11 @@
         way to allowing users to build their own dashboards.
       </p>
     </div>
-  </aside>
+  </section>
 </template>
 
 <style lang="scss" scoped>
-.aside {
+.user {
   width: max(30%, 236px);
   border-radius: $borderRadius;
   padding: 18px 14px;

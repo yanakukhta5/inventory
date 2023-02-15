@@ -1,16 +1,16 @@
 <script>
-import Aside from "@/components/Aside.vue";
+import User from "@/components/User.vue";
 import Grid from "@/components/Grid/Grid.vue";
 import Search from "@/components/Search.vue";
 import Description from "./components/Description.vue";
 
 export default {
   components: {
-    Aside,
+    User,
     Grid,
     Description,
     Search,
-  }
+  },
 };
 </script>
 
@@ -19,7 +19,7 @@ export default {
     <div class="_container">
       <Search></Search>
       <div class="content">
-        <Aside></Aside>
+        <User></User>
         <Grid></Grid>
       </div>
     </div>
