@@ -1,6 +1,6 @@
 <script>
-import { computed } from "@vue/reactivity";
 import GridItem from "./GridItem.vue";
+import { mapState } from "vuex";
 
 export default {
   components: {
@@ -9,28 +9,12 @@ export default {
   data() {
     return {
       minAmountOfCells: 25,
-      inventoryItems: [
-        {
-          color: "#7FAA65",
-          count: 4,
-          tooltip: "Зелёный",
-        },
-        {
-          color: "#AA9765",
-          count: 2,
-          tooltip: "Оранжевый",
-        },
-        {
-          color: "#656CAA",
-          count: 5,
-          tooltip: "Голубой",
-        },
-      ],
     };
   },
   computed: {
+    ...mapState({ inventoryItems: (state) => state.inventory.inventoryItems }),
     inventoryItemsArr() {
-      let inventoryItemsArr = JSON.parse(JSON.stringify(this.inventoryItems));
+      let inventoryItemsArr = this.inventoryItems;
       if (inventoryItemsArr.length < this.minAmountOfCells) {
         for (
           let i = inventoryItemsArr.length - 1;
@@ -39,7 +23,7 @@ export default {
         ) {
           if (this.inventoryItems[i])
             inventoryItemsArr[i] = this.inventoryItems[i];
-          else inventoryItemsArr[i] = {};
+          else inventoryItemsArr[i] = { id: i + 1 };
         }
       }
       return inventoryItemsArr;
@@ -65,13 +49,14 @@ export default {
   border-radius: $borderRadius;
   border: 1px solid $borderColor;
   overflow: auto;
+  height: fit-content;
 }
 .grid {
   display: grid;
   width: 525px;
   height: 525px;
-  min-height: 100%;
   background-color: $cardBackgroud;
   grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: repeat(5, 1fr);
 }
 </style>
